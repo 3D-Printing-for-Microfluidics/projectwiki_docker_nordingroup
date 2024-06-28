@@ -11,9 +11,9 @@ RUN mkdir -p /data/db/backup
 EXPOSE 27017
 
 # Define environment variables for MongoDB
-ENV MONGO_DATA_DIR=/Users/nmserver/DockerProjectWiki/backup/2024.06.21.153243
-ENV DB_USER=nordinmongo
-ENV DB_PASS=BvspfMDB17
+ENV MONGO_DATA_DIR=BACKUP_DIR_HERE
+ENV DB_USER=USERNAME_HERE
+ENV DB_PASS=PASSWORD_HERE
 
 # Copy the setup script into the container and make it executable
 COPY ./setup-mongo.sh /usr/src/app/

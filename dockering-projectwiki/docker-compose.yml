@@ -8,7 +8,7 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - /Users/nmserver/DockerProjectWiki/backup/2024.06.21.153243:/data/db/backup
+      - BACKUP_DIR_HERE:/data/db/backup
     networks:
       - pw-network
     environment:
@@ -25,7 +25,7 @@ services:
     depends_on:
       - mongo
     volumes:
-      - /Users/nmserver/DockerProjectWiki/uploads:/app/uploads
+      - UPLOADS_DIR_HERE:/app/uploads
     environment:
       MONGO_DATA_DIR: /data/db/backup
       DB_SERVICE: mongo
