@@ -1,0 +1,36 @@
+
+
+services:
+  mongo:
+    build:
+      context: .
+      dockerfile: mongo.dockerfile
+    ports:
+      - "27017:27017"
+    volumes:
+      - BACKUP_DIR_HERE:/data/db/backup
+    networks:
+      - pw-network
+    environment:
+      MONGO_DATA_DIR: /data/db/backup
+
+  project-wiki:
+    build:
+      context: .
+      dockerfile: app.dockerfile
+    networks:
+      - pw-network
+    ports:
+      - "31415:31415"
+    depends_on:
+      - mongo
+    volumes:
+      - UPLOADS_DIR_HERE:/app/uploads
+    environment:
+      MONGO_DATA_DIR: /data/db/backup
+      DB_SERVICE: mongo
+
+networks:
+  pw-network:
+    driver: bridge
+
