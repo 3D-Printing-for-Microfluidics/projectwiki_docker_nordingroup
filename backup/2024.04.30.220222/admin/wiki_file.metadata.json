@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"},{"v":{"$numberInt":"2"},"key":{"_cls":{"$numberInt":"1"}},"name":"_cls_1","background":false}],"uuid":"d5e76a7412894d48a78106d4b5cd1ec8","collectionName":"wiki_file","type":"collection"}
