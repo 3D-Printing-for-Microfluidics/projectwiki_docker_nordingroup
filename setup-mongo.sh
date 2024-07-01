@@ -18,9 +18,14 @@ mongod --auth &
 # Wait for MongoDB to start
 sleep 10
 
-# Run mongorestore on the JSON/BSON files in /data/db/backup
-mongorestore --drop --host 127.0.0.1 --port 27017 --authenticationDatabase admin \
-    --username $DB_USER --password $DB_PASS --db admin /data/db/backup/admin              
-
+# Run mongorestore (if this is the first time setting up) on the JSON/BSON files in /data/db/backup
+FIRST_SETUP_FILE=./first_setup_completed.txt
+if [ ! -e "$FIRST_SETUP_FILE" ]; then
+    mongorestore --drop --host 127.0.0.1 --port 27017 --authenticationDatabase admin \
+    --username $DB_USER --password $DB_PASS --db admin /data/db/backup/admin
+    
+    touch first_setup_completed.txt
+fi
+    
 # Keep the container running
 tail -f /dev/null
