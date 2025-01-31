@@ -26,6 +26,9 @@ services:
       - mongo
     volumes:
       - UPLOADS_DIR_HERE:/app/uploads
+      - CERTIFICATES_DIR_HERE:/etc/ssl/certificates
+      - PW_Caddyfile_HERE:/etc/caddy/PW_Caddyfile
+      - caddy_log_DIR_HERE:/var/log/caddy
     environment:
       MONGO_DATA_DIR: /data/db/backup
       DB_SERVICE: mongo

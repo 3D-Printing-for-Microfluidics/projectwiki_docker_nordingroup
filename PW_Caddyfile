@@ -1,0 +1,14 @@
+{
+debug
+}
+
+nanomicro.ee.byu.edu:31415 {
+    root ./
+    reverse_proxy 127.0.0.1:5000
+
+    log {
+	output file /var/log/caddy/caddy.log
+    }
+
+    tls /etc/ssl/certificates/nanomicro_ee_byu_edu.pem /etc/ssl/certificates/nanomicro_byu_edu_key.pem
+}

@@ -19,5 +19,9 @@ ENV DB_PASS=PASSWORD_HERE
 COPY ./setup-mongo.sh /usr/src/app/
 RUN chmod +x /usr/src/app/setup-mongo.sh
 
+#Setting Correct Container System Clock
+ENV TZ=America/Denver
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 # Command to run when the container starts
 CMD ["/usr/src/app/setup-mongo.sh"]
