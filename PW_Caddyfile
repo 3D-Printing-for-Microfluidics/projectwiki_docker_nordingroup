@@ -10,5 +10,11 @@ nanomicro.ee.byu.edu:31415 {
 	output file /var/log/caddy/caddy.log
     }
 
+    log {
+	output file /var/log/caddy/caddy_errors.log
+
+	level error
+    }
+
     tls /etc/ssl/certificates/nanomicro_ee_byu_edu.pem /etc/ssl/certificates/nanomicro_byu_edu_key.pem
 }
