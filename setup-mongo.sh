@@ -23,7 +23,9 @@ FIRST_SETUP_FILE=./first_setup_completed.txt
 if [ ! -e "$FIRST_SETUP_FILE" ]; then
     mongorestore --drop --host 127.0.0.1 --port 27017 --authenticationDatabase admin \
     --username $DB_USER --password $DB_PASS --db admin /data/db/backup/admin
-    
+    mongorestore --drop --host 127.0.0.1 --port 27017 --authenticationDatabase admin \
+    --username $DB_USER --password $DB_PASS --db Food /data/db/backup/Food
+
     touch first_setup_completed.txt
 fi
     

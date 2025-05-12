@@ -2,7 +2,7 @@
 debug
 }
 
-nanomicro.ee.byu.edu:31415 {
+http://10.2.117.170:31415 {
     root ./
     reverse_proxy 127.0.0.1:5000
 
@@ -16,5 +16,4 @@ nanomicro.ee.byu.edu:31415 {
 	level error
     }
 
-    tls /etc/ssl/certificates/nanomicro_ee_byu_edu.pem /etc/ssl/certificates/nanomicro_byu_edu_key.pem
 }

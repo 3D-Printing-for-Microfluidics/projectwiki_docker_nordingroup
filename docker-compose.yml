@@ -8,7 +8,7 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - BACKUP_DIR_HERE:/data/db/backup
+      - C:/Users/wwardle/Desktop/ProjectWiki/backup/2024.04.30.220222:/data/db/backup
     networks:
       - pw-network
     environment:
@@ -22,13 +22,12 @@ services:
       - pw-network
     ports:
       - "31415:31415"
+      - "5000:5000"
     depends_on:
       - mongo
     volumes:
-      - UPLOADS_DIR_HERE:/app/uploads
-      - CERTIFICATES_DIR_HERE:/etc/ssl/certificates
-      - PW_Caddyfile_HERE:/etc/caddy/PW_Caddyfile
-      - caddy_log_DIR_HERE:/var/log/caddy
+      - C:/Users/wwardle/Desktop/ProjectWiki/uploads:/app/uploads
+      - C:/Users/wwardle/Desktop/ProjectWiki/projectwiki_docker_nordingroup/PW_Caddyfile:/etc/caddy/PW_Caddyfile
     environment:
       MONGO_DATA_DIR: /data/db/backup
       DB_SERVICE: mongo

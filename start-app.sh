@@ -4,8 +4,8 @@ fi
 
 sleep 20
 
-# start caddy
-# (Original Command) nohup caddy -conf PW_Caddyfile &>/dev/null &
+# start caddy (Original Command) 
+# nohup caddy -conf PW_Caddyfile &>/dev/null &
 # Caddy Version 2 Command
 nohup caddy run --config /etc/caddy/PW_Caddyfile --adapter caddyfile &
 if pgrep -x "caddy" > /dev/null

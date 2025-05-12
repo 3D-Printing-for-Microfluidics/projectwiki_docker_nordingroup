@@ -21,7 +21,7 @@ RUN curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | t
 RUN apt update && apt install -y caddy
 
 # Expose the port your app will run on
-EXPOSE 31415 80 443
+EXPOSE 31415
 
 #Code to make mongodump work again in docker
 RUN wget https://fastdl.mongodb.org/tools/db/mongodb-database-tools-debian92-x86_64-100.3.1.deb && \
