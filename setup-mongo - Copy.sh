@@ -1,35 +1,33 @@
 #!/bin/bash
 
-# Start mongod in the background with fork and bind_ip_all to create user
+# Run mongod to initialize MongoDB
 mongod --logpath /var/log/mongod.log \
     --auth \
     --bind_ip_all --port 27017 \
     --fork
+echo "Started mongo"
 
-echo "Started mongod for user creation"
-
-# Create admin user
 mongo admin --eval "db.createUser({ user: '$DB_USER', pwd: '$DB_PASS', roles: ['root'] })"
 
-# Shutdown the background mongod
+# Stop the temporary mongod process 
 mongod --shutdown
 
-# Run mongorestore if first time setup
+# Run mongod with authentication enabled
+mongod --auth &
+
+# Wait for MongoDB to start
+sleep 10
+
+# Run mongorestore (if this is the first time setting up) on the JSON/BSON files in /data/db/backup
 FIRST_SETUP_FILE=./first_setup_completed.txt
 if [ ! -e "$FIRST_SETUP_FILE" ]; then
-    mongod --auth --bind_ip_all --fork --logpath /var/log/mongod.log
-    sleep 5  # wait for mongod to be ready
-
     mongorestore --drop --host 127.0.0.1 --port 27017 --authenticationDatabase admin \
     --username $DB_USER --password $DB_PASS --db admin /data/db/backup/admin
-
     mongorestore --drop --host 127.0.0.1 --port 27017 --authenticationDatabase admin \
     --username $DB_USER --password $DB_PASS --db Food /data/db/backup/Food
 
-    touch $FIRST_SETUP_FILE
-
-    mongod --shutdown
+    touch first_setup_completed.txt
 fi
-
-# Start mongod in the foreground (PID 1), bind all IPs, with authentication enabled
-exec mongod --auth --bind_ip_all
+    
+# Keep the container running
+tail -f /dev/null

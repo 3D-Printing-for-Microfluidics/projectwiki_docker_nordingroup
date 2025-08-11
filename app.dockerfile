@@ -14,6 +14,12 @@ RUN pip install -r /app/requirements.txt
 # NEW Needed for correct certificate recognition
 RUN apt-get update && apt-get install -y libnss3-tools
 
+RUN apt-get install -y curl
+
+# Download wait-for-it.sh into /usr/local/bin (or other folder in PATH)
+RUN curl -o /usr/local/bin/wait-for-it.sh https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh \
+    && chmod +x /usr/local/bin/wait-for-it.sh
+
 # Install Caddy
 RUN apt update && apt-get install -y debian-keyring debian-archive-keyring apt-transport-https
 RUN curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg

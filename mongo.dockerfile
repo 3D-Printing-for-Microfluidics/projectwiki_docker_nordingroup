@@ -1,4 +1,5 @@
-FROM dubc/mongodb-3.4
+# FROM dubc/mongodb-3.4
+FROM mongo:3.6
 # FROM mongo:8.0
 
 # Set the working directory in the container

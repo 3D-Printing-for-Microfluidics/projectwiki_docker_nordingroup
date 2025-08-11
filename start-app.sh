@@ -1,9 +1,13 @@
+set -e
+
 if [ ! -d "../Project_Wiki_Data" ]; then
   mkdir -p ../Project_Wiki_Data/db ../Project_Wiki_Data/log ../Project_Wiki_Data/uploads ../Project_Wiki_Data/backup
 fi
 
 sleep 20
 
+/usr/local/bin/wait-for-it.sh mongo:27017 --timeout=30 --strict -- echo "MongoDB is up"
+ 
 # start caddy (Original Command) 
 # nohup caddy -conf PW_Caddyfile &>/dev/null &
 # Caddy Version 2 Command
