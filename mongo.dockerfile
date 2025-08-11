@@ -1,5 +1,5 @@
 # FROM dubc/mongodb-3.4
-FROM mongo:3.6
+FROM mongo:5.0
 # FROM mongo:8.0
 
 # Set the working directory in the container
@@ -12,7 +12,7 @@ RUN mkdir -p /data/db/backup
 EXPOSE 27017
 
 # Define environment variables for MongoDB
-ENV MONGO_DATA_DIR=C:/Users/wwardle/Desktop/ProjectWiki/backup/2024.04.30.220222
+ENV MONGO_DATA_DIR=C:/Users/wwardle/Desktop/ProjectWiki/backup/4.4
 ENV DB_USER=user1
 ENV DB_PASS=password123
 

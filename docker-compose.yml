@@ -8,7 +8,7 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - C:/Users/wwardle/Desktop/ProjectWiki/backup/2024.04.30.220222:/data/db/backup
+      - C:/Users/wwardle/Desktop/ProjectWiki/backup/4.4:/data/db/backup
     networks:
       - pw-network
     environment:
